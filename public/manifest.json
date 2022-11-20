@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "readthenburn-frontend",
+  "name": "Frontend for readthenburn",
   "icons": [
     {
       "src": "favicon.ico",
