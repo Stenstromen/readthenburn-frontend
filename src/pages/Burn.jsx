@@ -1,5 +1,6 @@
 import React from "react";
-import { useState, useEffect, useParams } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
@@ -20,18 +21,23 @@ const CONFIG = {
 
 function Burn() {
   const { param } = useParams();
-  const [message, setMessage] = useState([]);
+  const [message, setMessage] = useState("");
   const { darkmode } = useDefaultProvider();
 
-  useEffect(() => {
+/*   useEffect(() => {
     axios.get(URL + `/${param}`, CONFIG).then((response) => {
       setMessage(response.data)
     });
-  }, []);
+  }, []); */
 
   return (
     <div>
-      <h1>lol</h1>
+      <h1 style={{color: "white"}}>{param}</h1>
+      <h1 style={{color: "white"}}>{param}</h1>
+      <h1 style={{color: "white"}}>{param}</h1>
+      <h1 style={{color: "white"}}>{param}</h1>
+      <h1 style={{color: "white"}}>{param}</h1>
+      <h1 style={{color: "white"}}>{param}</h1>
     </div>
   );
 }
