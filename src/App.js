@@ -12,7 +12,7 @@ function App() {
   const { setIsMobile, darkmode, setDarkmode } = useDefaultProvider();
 
   darkmode
-    ? setBodyColor({ color: "lightblack" })
+    ? setBodyColor({ color: "lightgray" })
     : setBodyColor({ color: "#252525" });
 
   function handleResize() {
