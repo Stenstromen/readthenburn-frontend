@@ -6,7 +6,6 @@ import Col from "react-bootstrap/Col";
 import Share from "../components/Share";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import ReactCaptcha from "modern-react-captcha";
 import { TfiReload } from "react-icons/tfi"
 import { useDefaultProvider } from "../contexts/default";
 
@@ -21,17 +20,8 @@ function Home() {
   const [shareId, setShareId] = useState("");
   const [message, setMessage] = useState("");
   const { darkmode, isMobile } = useDefaultProvider();
-  const [captchaMatched, setCaptchaMatched] = useState(false);
-
-  const handleSuccess = () => {
-    setCaptchaMatched(true);
-  };
-  const handleFailure = () => {
-    setCaptchaMatched(false);
-  };
 
   const handleMessage = () => {
-    if (!captchaMatched) return;
     if (message.length === 0) return;
 
     setShareId("");
@@ -111,19 +101,6 @@ function Home() {
                 <Share shareId={shareId} />
               ) : (
                 <>
-                  <div style={{display: "flex", flexDirection: "row"}}>
-                    <ReactCaptcha
-                      charset="u"
-                      length={4}
-                      color="white"
-                      bgColor="black"
-                      reload={false}
-                      reloadIcon={TfiReload}
-                      reloadText=''
-                      handleSuccess={handleSuccess}
-                      handleFailure={handleFailure}
-                    />
-                  </div>
                   <div>
                     <Button
                       style={{ marginTop: isMobile ? "20px" : "" }}
