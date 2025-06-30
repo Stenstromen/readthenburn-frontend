@@ -8,13 +8,13 @@ import { DefaultProvider } from "./contexts/default";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <>
     <DefaultProvider>
       <BrowserRouter>
-          <App />
+        <App />
       </BrowserRouter>
     </DefaultProvider>
-  </React.StrictMode>
+  </>
 );
 
 reportWebVitals();
