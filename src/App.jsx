@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useDefaultProvider } from "./contexts/default";
 import { Routes, Route } from "react-router-dom";

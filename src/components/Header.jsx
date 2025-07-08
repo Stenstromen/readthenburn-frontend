@@ -1,11 +1,9 @@
-//import { useEffect, useState } from "react";
 import { useDefaultProvider } from "../contexts/default";
-import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Container, Navbar, Nav } from "react-bootstrap";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 
 function Header() {
-  const { isMobile, darkmode, setDarkmode } = useDefaultProvider();
+  const { darkmode, setDarkmode } = useDefaultProvider();
 
   return (
     <div>
@@ -14,7 +12,7 @@ function Header() {
         variant={darkmode ? "light" : "dark"}
       >
         <Container>
-            <Container>
+          <Container>
             <img
               alt="ReadThenBurnLogo"
               src="/fire.png"
@@ -23,7 +21,7 @@ function Header() {
               className="d-inline-block align-top"
             />
             <Navbar.Brand>ReadThenBurn.se</Navbar.Brand>
-            </Container>
+          </Container>
           <Nav>
             <Nav.Link onClick={() => setDarkmode(!darkmode)}>
               {darkmode ? (

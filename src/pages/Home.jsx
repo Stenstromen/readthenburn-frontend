@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -6,8 +6,8 @@ import Col from "react-bootstrap/Col";
 import Share from "../components/Share";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { TfiReload } from "react-icons/tfi"
 import { useDefaultProvider } from "../contexts/default";
+import Stats from "../components/Stats";
 
 const URL = import.meta.env.VITE_APP_BACKEND_URL;
 const CONFIG = {
@@ -16,10 +16,36 @@ const CONFIG = {
   },
 };
 
+const exampleStats = {
+  totalMessages: 1337,
+  history: [
+    {
+      date: "1970-01-01",
+      totalMessages: 42,
+    },
+  ],
+};
+
 function Home() {
   const [shareId, setShareId] = useState("");
   const [message, setMessage] = useState("");
+  const [stats, setStats] = useState(null);
+  const [isLoadingStats, setIsLoadingStats] = useState(true);
   const { darkmode, isMobile } = useDefaultProvider();
+
+  useEffect(() => {
+    axios
+      .get(URL + "/stats", CONFIG)
+      .then((response) => {
+        setStats(response.data);
+        setIsLoadingStats(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching stats:", error);
+        setStats(exampleStats);
+        setIsLoadingStats(false);
+      });
+  }, []);
 
   const handleMessage = () => {
     if (message.length === 0) return;
@@ -83,7 +109,6 @@ function Home() {
                 />
                 <Form.Label
                   style={{
-                    color: darkmode ? "black" : "white",
                     paddingTop: isMobile ? "20px" : null,
                     color:
                       message.length >= 100
@@ -114,6 +139,25 @@ function Home() {
                 </>
               )}
             </div>
+            <hr
+              style={{
+                marginTop: isMobile ? "20px" : "",
+                color: darkmode ? "black" : "white",
+                border: "1px solid",
+              }}
+            />
+            {isLoadingStats ? (
+              <div
+                style={{
+                  textAlign: "center",
+                  color: darkmode ? "black" : "white",
+                }}
+              >
+                Loading statistics...
+              </div>
+            ) : (
+              <Stats isMobile={isMobile} stats={stats} />
+            )}
           </Col>
         </Row>
       </Container>
