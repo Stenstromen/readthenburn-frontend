@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { BsArrowDownSquareFill } from "react-icons/bs";
@@ -18,7 +19,7 @@ function Share(props) {
       });
     }
   }, [copyClicked]);
-  
+
   useEffect(() => {
     if (shareClicked) {
       simulateNetworkRequest().then(() => {
@@ -89,3 +90,7 @@ function Share(props) {
 }
 
 export default Share;
+
+Share.propTypes = {
+  shareId: PropTypes.string.isRequired,
+};
